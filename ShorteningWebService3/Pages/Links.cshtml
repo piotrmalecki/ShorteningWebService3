@@ -1,0 +1,34 @@
+﻿@page
+@model LinksModel
+@{
+    ViewData["Title"] = "All Shortened Links";
+
+
+
+}
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>Use this page to detail your site's links.</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Shorten Url</th>
+                <th>Original Url</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Links.FindAll())
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td><a href="@HttpContext.Request.Scheme://@HttpContext.Request.Host/@item.GetUrlChunk()">@HttpContext.Request.Scheme://@HttpContext.Request.Host/@item.GetUrlChunk()</a> </td>
+                    <td>@item.Url</td>
+               
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
